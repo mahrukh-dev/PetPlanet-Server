@@ -1,11 +1,12 @@
 ﻿body {
     margin: 0;
     padding: 0;
+    background: #E4CCB4;
     /*box-sizing: border-box;*/
     font-family: 'Arial Rounded MT', sans-serif;
     /*min-height: 100vh;*/
-    background: url('/images/bg.jpeg');
-    background-size: cover;
+    /*background: url('/images/bg.jpeg');
+    background-size: cover;*/
 }
 
 .header {
