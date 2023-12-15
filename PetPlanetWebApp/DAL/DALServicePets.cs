@@ -98,7 +98,7 @@ namespace PetPlanetWebApp.DAL
                                 Species = reader["Species"].ToString(),
                                 Breed = reader["Breed"].ToString(),
                                 Color = reader["Color"].ToString(),
-                                Age = reader["Age"] as int?,
+                                Age = (int)reader["Age"],
                                 Gender = reader["Gender"].ToString(),
                                 Size = reader["Size"].ToString(),
                                 Coat = reader["Coat"].ToString(),

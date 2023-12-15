@@ -1,31 +1,23 @@
 ﻿@page "/"
-@* <PageTitle>Index</PageTitle>
 
-<button @onclick="FetchData">GET DATA</button>
 
-@if (todo != null)
-{
-    <h3>Title: @todo.title</h3>
-    <p>Completed: @todo.completed</p>
-} *@
-<HomeHeader/>
-<HomeC1 />
-<HomeC2 />
-<HomeC3 />
-<Footer />
+
+<style>
+    .p-boox {
+        height: 110px;
+    }
+</style>
+
+<div class="add-pet-body">
+    <div class="p-boox"></div>
+
+    <HomeHeader />
+    <HomeC1 />
+    <HomeC2 />
+    <HomeC3 />
+    <Footer />
+    <div class="p-box"></div>
+</div>
 
 @code{
-    // public Todo todo;
-    // public HttpClient httpClient = new HttpClient();
-    // public async Task FetchData()
-    // {
-    //     todo = await httpClient.GetFromJsonAsync<Todo>("https://jsonplaceholder.typicode.com/todos/1");
-    // }
-    // public class Todo
-    // {
-    //     public int userId { get; set; }
-    //     public int id { get; set; }
-    //     public string title { get; set; }
-    //     public bool completed { get; set; }
-    // }
 } 
