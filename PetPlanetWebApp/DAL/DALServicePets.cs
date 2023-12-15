@@ -13,7 +13,7 @@ namespace PetPlanetWebApp.DAL
             SqlCommand cmd = new SqlCommand("SP_InsertPet", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Name", pet.Name);
-            cmd.Parameters.AddWithValue("@Type", pet.Age);
+            cmd.Parameters.AddWithValue("@Type", pet.Type);
             cmd.Parameters.AddWithValue("@Species", pet.Species);
             cmd.Parameters.AddWithValue("@Breed", pet.Breed);
             cmd.Parameters.AddWithValue("@Color", pet.Color);
