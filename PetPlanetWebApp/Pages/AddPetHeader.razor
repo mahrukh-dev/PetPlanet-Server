@@ -1,0 +1,145 @@
+﻿@page "/addpet-header"
+@using PetPlanetWebApp.Models
+@using PetPlanetWebApp.DAL
+
+
+<link href="css/AddPetHeader.css" rel="stylesheet" />
+
+<div class="form-container">
+    <h1>Please fill out the form to add a pet</h1>
+    <form id="petForm" @onsubmit="UploadPet">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="type">Type:</label>
+        <input type="text" id="type" name="type" required><br><br>
+
+        <label for="species">Species:</label>
+        <input type="text" id="species" name="species" required><br><br>
+
+        <label for="breed">Breed:</label>
+        <input type="text" id="breed" name="breed" required><br><br>
+
+        <label for="color">Color:</label>
+        <input type="text" id="color" name="color" required><br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br><br>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="unknown">Unknown</option>
+        </select><br><br>
+
+        <label for="size">Size:</label>
+        <select id="size" name="size">
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+            <option value="extra-large">Extra Large</option>
+        </select><br><br>
+
+        <label for="coat">Coat:</label>
+        <input type="text" id="coat" name="coat"><br><br>
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="contactEmail">Email:</label>
+        <input type="email" id="contactEmail" name="contactEmail" required><br><br>
+
+        <label for="contactPhone">Phone:</label>
+        <input type="tel" id="contactPhone" name="contactPhone" required><br><br>
+
+        <label for="contactAddress">Address:</label>
+        <input type="text" id="contactAddress" name="contactAddress" required><br><br>
+
+        <label for="photo">Add a Photo:</label>
+        <input type="file" id="photoInput" name="photo" accept="image/*" onchange="OnFileChange()"><br><br>
+
+        <div class="row mb-4">
+            <!-- Utilizing Bootstrap's margin-bottom class -->
+            <div class="col-md-6">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" />
+                    <div class="card-body">
+                        <h5 class="card-title">Selected Image</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- You can add additional content here if needed -->
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-4">Add Pet</button> <!-- Utilizing Bootstrap's margin-bottom class -->
+    </form>
+</div>
+
+<div>
+    <button @onclick="ADD">ADD INTO DB</button>
+</div>
+
+<script>
+    function displayUploadedFile() {
+        var input = document.getElementById('photoInput');
+        var file = input.files[0];
+
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.alt = 'Uploaded Image';
+                img.style.maxWidth = '100%';
+                img.style.borderTopLeftRadius = '10px';
+                img.style.borderTopRightRadius = '10px';
+
+                var cardBody = document.querySelector('.card-body');
+                cardBody.innerHTML = ''; // Clear any existing content
+                cardBody.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    // Attach the function to the change event of the file input
+    document.getElementById('photoInput').addEventListener('change', displayUploadedFile);
+</script>
+
+
+@code {
+    Pet pet { get; set; } = new Pet
+        {
+            Id = 1,
+            Name = "Buddy",
+            Type = "Dog",
+            Species = "Canine",
+            Breed = "Golden Retriever",
+            Color = "Golden",
+            Age = 2,
+            Gender = "Male",
+            Size = "Large",
+            Coat = "Medium",
+            Description = "Buddy is a friendly and energetic Golden Retriever.",
+            ContactEmail = "buddy@example.com",
+            ContactPhone = "123-456-7890",
+            ContactAddress = "456 Park Ave, Cityville, USA",
+            Photo = new byte[0]  // You can set the byte array for the photo if you have one
+        };
+
+
+    private void UploadPet()
+    {
+
+      DALServicePets.InsertPet(pet);
+
+    }
+    private void ADD()
+    {
+
+        DALServicePets.InsertPet(pet);
+    }
+}

@@ -1,0 +1,81 @@
+﻿@page "/maps-header"
+@using Microsoft.AspNetCore.Components.Web
+@inject IJSRuntime JSRuntime;
+@implements IAsyncDisposable
+
+@* <link href="css/GoogleMapsHeader.css" rel="stylesheet" /> *@
+@* <div id="map" style="width:800px; height: 600px; margin: 0 auto;"></div>*@
+
+<style>
+    /* Your CSS styles here */
+    .map-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        margin-bottom: 20px; /* Adjust margin as needed */
+    }
+
+    .text-header {
+        padding: 10px;
+        color: rgba(152, 71, 21, 10);
+        font-size: 40px;
+    }
+
+    .map-square {
+        width: 500px; /* Adjust map container width */
+        height: 500px; /* Adjust map container height */
+        border-radius: 10px;
+        overflow: hidden;
+        border: 2px solid #000;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .square-map {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<div class="map-container">
+    <div class="text-header">
+        <p>MAP FOR NEAREST PET CLINICS IN ISLAMABAD:</p>
+    </div>
+    </div>
+<div class="map-container">
+    <div class="map-square">
+        <div id="map" class="square-map"></div>
+    </div>
+</div>
+
+@code {
+    @*add variables for accessing and running JavaScript function*@
+    private IJSObjectReference? module; @*the reference object of the JavaScript./leafletmap.js module*@
+    private string? result; @*the variable that will take what the JS func returns (string)*@
+
+    protected override async Task OnAfterRenderAsync(bool firstRender) @*blazor event*@
+    {
+        if (firstRender) @*rendered only once at beginning*@
+        {
+            // var client = new HttpClient();
+            // var raw = await client.GetStringAsync("http://localhost:5262/geojson.json");
+            // raw = raw.Replace('\n', ' ');
+
+            @*invoke JS "./leafletmap.js" module*@
+            module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./leafletmap.js");
+            if(module != null)
+            {
+                @*invoke JS "load_map()" function*@
+                result = await module.InvokeAsync<string>("load_map"/* , Convert.ToString(raw) */);
+            }
+        }
+    }
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (module is not null)
+        {
+            await module.DisposeAsync();
+        }
+    }
+}
+

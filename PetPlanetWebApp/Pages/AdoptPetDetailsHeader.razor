@@ -1,0 +1,59 @@
+﻿@page "/adoptpetdetails-header"
+@using Microsoft.AspNetCore.Components
+
+<link href="css/AdoptPetDetailsHeader.css" rel="stylesheet" />
+
+<div class="pet-details">
+    <h2 class = "details-heading"> @PetDetails.Name Details </h2>
+    <div class="details">
+        <p>Name: @PetDetails.Name</p>
+        <p>Type: @PetDetails.Type</p>
+        <p>Species: @PetDetails.Species</p>
+        <p>Breed: @PetDetails.Breed</p>
+        <p>Color: @PetDetails.Color</p>
+        <p>Age: @PetDetails.Age</p>
+        <p>Gender: @PetDetails.Gender</p>
+        <p>Size: @PetDetails.Size</p>
+        <p>Coat: @PetDetails.Coat</p>
+        <p>Description: @PetDetails.Description</p>
+        <p>Contact Email: @PetDetails.ContactEmail</p>
+        <p>Contact Phone: @PetDetails.ContactPhone</p>
+        <p>Contact Address: @PetDetails.ContactAddress</p>
+    </div>
+    <button class="adopt-button">Adopt this pet</button>
+</div>
+
+@code {
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
+        private Pet PetDetails;
+
+    protected override void OnInitialized()
+    {
+        var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+        var query = uri.Query.TrimStart('?');
+        var queryParams = query.Split('&')
+            .Select(part => part.Split('='))
+            .ToDictionary(split => split[0], split => split.Length > 1 ? Uri.UnescapeDataString(split[1]) : "");
+
+        // Extract pet details from query parameters
+        PetDetails = new Pet
+            {
+                Id = int.Parse(queryParams["id"]),
+                Name = queryParams["name"],
+                Type = queryParams["type"],
+                Species = queryParams["species"],
+                Breed = queryParams.ContainsKey("breed") ? queryParams["breed"] : "",
+                Color = queryParams.ContainsKey("color") ? queryParams["color"] : "",
+                Age = queryParams.ContainsKey("age") ? int.Parse(queryParams["age"]) : 0,
+                Gender = queryParams.ContainsKey("gender") ? queryParams["gender"] : "",
+                Size = queryParams.ContainsKey("size") ? queryParams["size"] : "",
+                Coat = queryParams.ContainsKey("coat") ? queryParams["coat"] : "",
+                Description = queryParams.ContainsKey("description") ? queryParams["description"] : "",
+                ContactEmail = queryParams.ContainsKey("contactEmail") ? queryParams["contactEmail"] : "",
+                ContactPhone = queryParams.ContainsKey("contactPhone") ? queryParams["contactPhone"] : "",
+                ContactAddress = queryParams.ContainsKey("contactAddress") ? queryParams["contactAddress"] : ""
+            };
+    }
+}

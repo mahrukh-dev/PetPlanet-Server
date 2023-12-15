@@ -1,0 +1,27 @@
+﻿@* <!-- Pages/TokenDisplay.razor -->
+@page "/tokendisplay"
+@inject PetfinderAuthService PetfinderAuthService
+
+<h3>Token Display</h3>
+<p>@tokenValue</p>
+
+<button @onclick="GetToken">Get Token</button>
+
+@code {
+    private string tokenValue = string.Empty;
+
+    private async Task GetToken()
+    {
+        try
+        {
+            string accessToken = await PetfinderAuthService.GetAccessTokenAsync();
+            tokenValue = accessToken;
+        }
+        catch (Exception ex)
+        {
+            // Handle exceptions
+            tokenValue = "Error fetching access token";
+        }
+    }
+}
+ *@

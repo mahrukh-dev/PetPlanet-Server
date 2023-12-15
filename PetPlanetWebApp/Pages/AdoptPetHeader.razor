@@ -1,0 +1,67 @@
+﻿@page "/adoptpet-header"
+@using Microsoft.AspNetCore.Components.Web
+@using System.Collections.Generic
+@using System.Text
+
+<link href="css/AdoptPetHeader.css" rel="stylesheet" />
+
+<div class="adoptpet-body">
+    <div class="filter-section">
+        <label for="speciesDropdown">FILTER BY SPECIES:</label>
+        <select id="speciesDropdown" @bind="selectedSpecies">
+            <option value="">All</option>
+            <option value="Cat">Cats</option>
+            <option value="Dog">Dogs</option>
+        </select>
+    </div>
+
+    <div class="wrapper">
+        <div class="card-container">
+            @foreach (var pet in FilteredPets)
+            {
+                <a href="@($"adopt-pet-details?id={pet.Id}&name={pet.Name}&type={pet.Type}&species={pet.Species}&breed={pet.Breed}&color={pet.Color}&age={pet.Age}&gender={pet.Gender}&size={pet.Size}&coat={pet.Coat}&description={pet.Description}&contactEmail={pet.ContactEmail}&contactPhone={pet.ContactPhone}&contactAddress={pet.ContactAddress}")">
+                <div class="card">
+                    <img src="images/trial-image.jpeg" />
+                    <div class="info">
+                        <p>Name: @pet.Name</p>
+                        <p>Type: @pet.Type</p>
+                        <p>Species: @pet.Species</p>
+                    </div>
+                </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<Pet> Pets;
+    private string selectedSpecies = "";
+
+    protected override void OnInitialized()
+    {
+        Pets = new List<Pet>
+        {
+            new Pet {Id = 1, Name = "Fluffy", Type = "Persian", Species = "Cat", Breed = "Domestic Longhair", Color = "White",
+                    Age = 3, Gender = "Male", Size = "Medium", Coat = "Long", Description = "Fluffy is a friendly and playful Persian cat.",
+                    ContactEmail = "fluffy@example.com", ContactPhone = "123-456-7890", ContactAddress = "123 Main St, Anytown, USA"},
+            new Pet {Id = 2, Name = "Candy", Type = "Persian", Species = "Cat"},
+            new Pet {Id = 3, Name = "Buddy", Type = "Golden Retriever", Species = "Dog"},
+        };
+    }
+
+    private List<Pet> FilteredPets
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(selectedSpecies))
+            {
+                return Pets;
+            }
+            else
+            {
+                return Pets.Where(p => p.Species == selectedSpecies).ToList();
+            }
+        }
+    }
+}

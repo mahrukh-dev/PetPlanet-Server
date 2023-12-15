@@ -1,0 +1,96 @@
+﻿<style>
+    .custom-div {
+        height: 30px;
+        background-color: transparent;
+    }
+
+    .c2-body {
+        background-color: #E4CCB4; /* Set the background color as per your preference */
+    }
+
+    .c2-container {
+        position: relative;
+        width: 100%;
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 20px 50px;
+    }
+
+    .c2-image {
+        position: relative;
+        width: 100%;
+        padding-top: 30%;
+        overflow: hidden;
+        background: url("/images/dog2.jpg") center/contain no-repeat;
+        background-size: cover;
+    }
+
+    .c2-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 20px;
+        right: 20px;
+        width: calc(100% - 40px);
+    }
+
+    .c2-columns {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .c2-column {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background-color: #d2b48c;
+        box-sizing: border-box;
+        border: 2px solid #693c07;
+        border-radius: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+        .c2-column:last-child {
+            margin-right: 0;
+        }
+
+        .c2-column i {
+            font-size: 40px;
+            color: #693c07;
+            margin-right: 10px;
+        }
+
+        .c2-column p {
+            margin: 0;
+            color: #693c07; /* Set the color to match the icon color */
+        }
+</style>
+
+<div class="c2-body">
+<div class="custom-div"></div>
+<div class="c2-container">
+    <div class="c2-image">
+        <div class="c2-overlay">
+            <div class="c2-columns">
+                <div class="c2-column">
+                    <i class="fas fa-cat"></i>
+                        <a href=""><p>Text 1</p></a>
+                </div>
+                <div class="c2-column">
+                    <i class="fas fa-dog"></i>
+                        <a><p>Text 2</p></a>
+                </div>
+                <div class="c2-column">
+                    <i class="fas fa-fish"></i>
+                        <a><p>Text 3</p></a>
+                </div>
+                <div class="c2-column">
+                    <i class="fas fa-cat"></i>
+                        <a><p>Text 4</p></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

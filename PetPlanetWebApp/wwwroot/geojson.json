@@ -1,0 +1,42 @@
+[
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [ 33.642586, 72.952192 ]
+    },
+    "properties": {
+      "name": "Veteran Pets Care"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [ 33.651397, 72.953219 ]
+    },
+    "properties": {
+      "name": "Paws & Feathers Pet Clinic"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [ 33.698398, 72.968182 ]
+    },
+    "properties": {
+      "name": "Aliyan Pets Hospital"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [ 33.708926, 73.046278 ]
+    },
+    "properties": {
+      "name": "Royal Pets Hospital"
+    }
+  }
+]

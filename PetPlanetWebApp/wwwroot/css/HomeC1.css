@@ -1,0 +1,70 @@
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: url('/images/bg.jpeg') no-repeat;
+    background-size: cover;
+    font-family: 'Arial Rounded MT', sans-serif;
+    color: rgba(255, 106, 0, 0.7);
+}
+
+.about {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.about img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+}
+
+.main-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-col {
+    flex-basis: 45%;
+    padding: 20px;
+    text-align: center;
+}
+
+.main-text h5 {
+    color: #8E3419;
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+.main-text h1 {
+    color: #8E3419;
+    font-size: 70px;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+button {
+    background: #8E3419;
+    color: white;
+    text-decoration: none;
+    border: 2px solid transparent;
+    font-weight: bold;
+    padding: 15px 35px;
+    border-radius: 30px;
+    transition: .4s;
+    cursor: pointer;
+}
+
+    button:hover {
+        background: rgba(255, 106, 0, 0.5);
+        border: 2px solid rgba(255, 106, 0, 0.7);
+    }
