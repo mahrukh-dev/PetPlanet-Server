@@ -40,14 +40,15 @@
 
     protected override void OnInitialized()
     {
-        Pets = new List<Pet>
-        {
-            new Pet {Id = 1, Name = "Fluffy", Type = "Persian", Species = "Cat", Breed = "Domestic Longhair", Color = "White",
-                    Age = 3, Gender = "Male", Size = "Medium", Coat = "Long", Description = "Fluffy is a friendly and playful Persian cat.",
-                    ContactEmail = "fluffy@example.com", ContactPhone = "123-456-7890", ContactAddress = "123 Main St, Anytown, USA"},
-            new Pet {Id = 2, Name = "Candy", Type = "Persian", Species = "Cat"},
-            new Pet {Id = 3, Name = "Buddy", Type = "Golden Retriever", Species = "Dog"},
-        };
+        Pets = DALServicePets.GetPets();
+        // Pets = new List<Pet>
+        // {
+        //     new Pet {Id = 1, Name = "Fluffy", Type = "Persian", Species = "Cat", Breed = "Domestic Longhair", Color = "White",
+        //             Age = 3, Gender = "Male", Size = "Medium", Coat = "Long", Description = "Fluffy is a friendly and playful Persian cat.",
+        //             ContactEmail = "fluffy@example.com", ContactPhone = "123-456-7890", ContactAddress = "123 Main St, Anytown, USA"},
+        //     new Pet {Id = 2, Name = "Candy", Type = "Persian", Species = "Cat"},
+        //     new Pet {Id = 3, Name = "Buddy", Type = "Golden Retriever", Species = "Dog"},
+        // };
     }
 
     private List<Pet> FilteredPets
