@@ -91,5 +91,36 @@ namespace PetPlanetWebApp.DAL
 
             return dtUsers;
         }
+
+        public static User FindUserByEmail(string userEmail)
+        {
+            SqlConnection con = DBHelpPetService.GetConnection();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("FindUserByEmail", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@p_UserEmail", userEmail);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            User user = null;
+
+            if (reader.Read())
+            {
+                user = new User
+                {
+                    UserID = (int)reader["UserID"],
+                    UserName = reader["UserName"].ToString(),
+                    UserEmail = reader["UserEmail"].ToString(),
+                    UserPassword = reader["UserPassword"].ToString(),
+                    Name = reader["Name"].ToString()
+                };
+            }
+
+            reader.Close();
+            con.Close();
+
+            return user;
+        }
+
     }
 }

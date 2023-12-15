@@ -1,5 +1,7 @@
 ﻿@page "/signup-header"
 @using Microsoft.AspNetCore.Components.Web
+@inject NavigationManager NavigationManager
+
 
 <link href="css/SignUpHeader.css" rel="stylesheet" />
 
@@ -10,37 +12,37 @@
         </div>
 
         <div class="input_box">
-            <input type="text" id="name" class="input-field" required>
+            <input type="text" @bind="user.Name" id="name" class="input-field" required>
             <label for="name" class="label">Name</label>
             <i class="bx bx-person icon"></i>
         </div>
 
         <div class="input_box">
-            <input type="text" id="username" class="input-field" required>
+            <input type="text" id="username" @bind="user.UserName" class="input-field" required>
             <label for="username" class="label">Username</label>
             <i class="bx bx-user icon"></i>
         </div>
 
         <div class="input_box">
-            <input type="email" id="email" class="input-field" required>
+            <input type="email" id="email" @bind="user.UserEmail" class="input-field" required>
             <label for="email" class="label">Email</label>
             <i class="bx bx-envelope icon"></i>
         </div>
 
         <div class="input_box">
-            <input type="password" id="password" class="input-field" required>
+            <input type="password" id="password" @bind="user.UserPassword" class="input-field" required>
             <label for="password" class="label">Password</label>
             <i class="bx bx-lock-alt icon"></i>
         </div>
 
         <div class="input_box">
-            <input type="password" id="confirmPassword" class="input-field" required>
+            <input type="password" id="confirmPassword" @bind="cPass" class="input-field" required>
             <label for="confirmPassword" class="label">Confirm Password</label>
             <i class="bx bx-lock-alt icon"></i>
         </div>
 
         <div class="inputbox">
-            <input type="submit" class="input-submit" value="Sign Up">
+            <input type="submit" @onclick="Signup" class="input-submit" value="Sign Up">
         </div>
 
         <div class="login">
@@ -48,3 +50,20 @@
         </div>
     </div>
 </div>
+
+
+
+@code {
+    User user { get; set; } = new User
+    {
+    };
+    string cPass { get; set; }
+
+    private void Signup()
+    {
+        if(cPass.ToString() == user.UserPassword.ToString()){
+            DALServiceUsers.InsertUser(user);
+            NavigationManager.NavigateTo($"/home/{user.UserName}");
+        }
+    }
+}

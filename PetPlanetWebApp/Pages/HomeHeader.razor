@@ -14,7 +14,7 @@
     </nav>
     <nav class="navbar">
         <a href="/home" class="menu-item">Home</a>
-        <a href="/signup" class="menu-item">Create Account</a>
+        <a href="/signup" class="menu-item">@user</a>
     </nav>
 
     <div class="custom_menu-btn">
@@ -40,6 +40,9 @@
 </header>
 
 @code {
+    [Parameter]
+    public string user { get; set; } = "Create Account";
+
     private bool isNavVisible = false;
 
     private void ToggleNav()

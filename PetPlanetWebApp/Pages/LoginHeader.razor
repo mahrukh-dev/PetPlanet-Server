@@ -1,6 +1,8 @@
 ﻿@page "/login-header"
 @using Microsoft.AspNetCore.Components.Web
 
+@inject NavigationManager NavigationManager
+
 <link  href="css/LoginHeader.css" rel="stylesheet" />
 
 <div class="wrapper">
@@ -10,13 +12,13 @@
         </div>
 
         <div class="input_box">
-            <input type="text" id="user" class="input-field" required>
+            <input type="text" @bind="user.UserEmail" id="user" class="input-field" required>
             <label for="user" class="label">Username</label>
             <i class="bx bx-user icon"></i>
         </div>
 
         <div class="input_box">
-            <input type="password" id="pass" class="input-field" required>
+            <input type="password" @bind="user.UserPassword" id="pass" class="input-field" required>
             <label for="pass" class="label">Password</label>
             <i class="bx bx-lock-alt icon"></i>
         </div>
@@ -32,7 +34,7 @@
         </div>
 
         <div class="inputbox">
-            <input type="submit" class="input-submit" value="Login">
+            <input type="submit" class="input-submit" @onclick="Login" value="Login">
         </div>
 
         <div class="register">
@@ -40,3 +42,40 @@
         </div>
     </div>
 </div>
+
+
+<!-- Your login page content remains the same -->
+@code {
+    User user { get; set; } = new User();
+
+    private void Login()
+    {
+        if (ValidateUser())
+        {
+            User search = DALServiceUsers.FindUserByEmail(user.UserEmail.ToString());
+            if (search != null && user.UserPassword == search.UserPassword)
+            {
+                // Successful login, navigate to the user's home page
+                NavigationManager.NavigateTo($"/home/{search.UserName}");
+            }
+            else
+            {
+                // Failed login, show an error message or handle accordingly
+                // You might want to add a property to store error messages and display them in the UI
+            }
+        }
+        else
+        {
+            // User object is not valid, show an error message or handle accordingly
+        }
+    }
+
+    private bool ValidateUser()
+    {
+        // Add any additional validation logic here
+        // For example, check if the user object has a valid email format, etc.
+
+        // For simplicity, let's assume the user object is always valid in this example
+        return true;
+    }
+}

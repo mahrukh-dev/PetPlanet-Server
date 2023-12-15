@@ -1,24 +1,27 @@
 ﻿@page "/home"
+@page "/"
+
+@page "/home/{username}"
 
 <style>
     .p-box {
         height: 110px;
     }
-
 </style>
 
 <div class="add-pet-body">
     <div class="p-box"></div>
-    <HomeHeader></HomeHeader>
+    <HomeHeader user="@userName"></HomeHeader>
     <HomeC1 />
     <HomeC2 />
     <HomeC3 />
 
     <Footer />
     <div class="p-box"></div>
-
 </div>
 
 @code {
-
+    [Parameter]
+    [System.ComponentModel.DataAnnotations.RegularExpression(@"^\S+$", ErrorMessage = "Invalid username format.")]
+    public string userName { get; set; } = "Create Account";
 }
