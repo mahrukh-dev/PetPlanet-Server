@@ -1,91 +1,100 @@
-﻿@page "/adoption-form/"
-@page "/adoption-form/{petid}"
+﻿@page "/adoption-form/{petid}"
 @using PetPlanetWebApp.Models
 @using Microsoft.AspNetCore.Components.Forms
 
 <style>
-    .form-container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        background: #3498db;
-        color: white;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-    }
+	body {
+		background-image: url('/images/bg.jpeg');
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+		margin: 0;
+		padding: 0;
+		height: 100vh;
+	}
 
-    h1 {
-        text-align: center;
-    }
+	.form-container {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 20px;
+		background: #994715;
+	}
 
-    form {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-    }
+	h1 {
+		color: white;
+		text-align: center;
+		margin-bottom: 20px;
+	}
 
-    label {
-        font-weight: bold;
-        display: block;
-        margin-bottom: 8px;
-    }
+	form {
+		background-color: #f9f9f9;
+		padding: 20px;
+		border-radius: 10px;
+		box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+	}
 
-    input[type="text"],
-    input[type="number"],
-    input[type="email"],
-    input[type="tel"] {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-    }
+	label {
+		font-weight: bold;
+		display: block;
+		margin-bottom: 8px;
+	}
 
-    button {
-        padding: 12px 20px;
-        border: none;
-        border-radius: 5px;
-        background: #2ecc71;
-        color: white;
-        cursor: pointer;
-    }
+	input[type="text"],
+	input[type="number"],
+	input[type="email"],
+	input[type="tel"] {
+		width: 100%;
+		padding: 8px;
+		margin-bottom: 10px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+	}
 
-        button:hover {
-            background: #27ae60;
-        }
+	.form-container button,
+	button.form-container {
+		padding: 10px 20px;
+		border: none;
+		border-radius: 5px;
+		background: #8E3419 !important;
+		color: white;
+		cursor: pointer;
+	}
 
-
+		.form-container button:hover,
+		button.form-container:hover {
+			background: rgba(255, 106, 0, 0.7) !important; /* Use !important to prioritize this color */
+			border: 2px solid rgba(255, 106, 0, 0.7) !important; /* Use !important to prioritize this color */
+		}
 </style>
 
 <div class="form-container">
-    <h1>Adoption Form</h1>
-    <form id="adoptionForm" @onsubmit="SubmitAdoptionForm">
-        <p></p>
-        <label for="userEmail">Email:</label>
-        <input type="email" id="userEmail" @bind="adoptionRequest.UserEmail" name="userEmail" required><br><br>
+	<h1>Adoption Form</h1>
+	<form id="adoptionForm" @onsubmit="SubmitAdoptionForm">
+		<p></p>
+		<label for="userEmail">Email:</label>
+		<input type="email" id="userEmail" @bind="adoptionRequest.UserEmail" name="userEmail" required><br><br>
 
-        <label for="userAddress">Address:</label>
-        <input type="text" id="userAddress" @bind="adoptionRequest.UserAddress" name="userAddress" required><br><br>
+		<label for="userAddress">Address:</label>
+		<input type="text" id="userAddress" @bind="adoptionRequest.UserAddress" name="userAddress" required><br><br>
 
-        <label for="contactNumber">Contact Number:</label>
-        <input type="tel" id="contactNumber" @bind="adoptionRequest.ContactNumber" name="contactNumber" required><br><br>
+		<label for="contactNumber">Contact Number:</label>
+		<input type="tel" id="contactNumber" @bind="adoptionRequest.ContactNumber" name="contactNumber" required><br><br>
 
-        <label for="userName">Username:</label>
-        <input type="text" id="userName" @bind="adoptionRequest.UserName" name="userName" required><br><br>
+		<label for="userName">Username:</label>
+		<input type="text" id="userName" @bind="adoptionRequest.UserName" name="userName" required><br><br>
 
-        <button type="submit" class="btn btn-primary mb-4">Submit Adoption Request</button>
-    </form>
+		<button type="submit" class="btn btn-primary mb-4">Submit Adoption Request</button>
+	</form>
 </div>
 
 @code {
-    [Parameter]
-    public string petid { get; set; }
+	[Parameter]
+	public string petid { get; set; }
 
-    private int parsedPetId;
+	private int parsedPetId;
 
-    AdoptionRequest adoptionRequest { get; set; } = new AdoptionRequest();
-    AdoptedPet adoptedPet { get; set; } = new AdoptedPet();
+	AdoptionRequest adoptionRequest { get; set; } = new AdoptionRequest();
+	AdoptedPet adoptedPet { get; set; } = new AdoptedPet();
 
     protected override void OnInitialized()
     {
@@ -124,14 +133,14 @@
             }
         }
 
-        // Do not set the Id explicitly if it's an identity column
-        adoptedPet.Id = parsedPetId;
+		// Do not set the Id explicitly if it's an identity column
+		adoptedPet.Id = parsedPetId;
 
-        DALServiceAdoptedPets.InsertAdoptedPet(adoptedPet);
-        adoptionRequest.PetId = adoptedPet.Id;
-        DALServiceAdoptionRequests.InsertAdoptionRequest(adoptionRequest);
+		DALServiceAdoptedPets.InsertAdoptedPet(adoptedPet);
+		adoptionRequest.PetId = adoptedPet.Id;
+		DALServiceAdoptionRequests.InsertAdoptionRequest(adoptionRequest);
 
-        DALServicePets.DeletePet(parsedPetId);
-    }
+		DALServicePets.DeletePet(parsedPetId);
+	}
 
 }
