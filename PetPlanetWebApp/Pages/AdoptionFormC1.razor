@@ -1,5 +1,4 @@
-﻿@page "/adopform"
-@page "/adoption-form/{petid}"
+﻿@page "/adoption-form/{petid}"
 @using PetPlanetWebApp.Models
 @using Microsoft.AspNetCore.Components.Forms
 
@@ -97,42 +96,42 @@
 	AdoptionRequest adoptionRequest { get; set; } = new AdoptionRequest();
 	AdoptedPet adoptedPet { get; set; } = new AdoptedPet();
 
-	protected override void OnInitialized()
-	{
-		if (int.TryParse(petid, out int result))
-		{
-			parsedPetId = result;
-		}
-		else
-		{
-			// Handle the case where petid is not a valid integer
-			// You might want to display an error message or redirect the user.
-		}
-	}
-	private void SubmitAdoptionForm()
-	{
-		Pet find = new Pet();
-		List<Pet> pets = DALServicePets.GetPets();
-		foreach (var p in pets)
-		{
-			if (parsedPetId == p.Id)
-			{
-				adoptedPet.Name = p.Name;
-				adoptedPet.Type = p.Type;
-				adoptedPet.Breed = p.Breed;
-				adoptedPet.Color = p.Color;
-				adoptedPet.Species = p.Species;
-				adoptedPet.Age = p.Age;
-				adoptedPet.Gender = p.Gender;
-				adoptedPet.Size = p.Size;
-				adoptedPet.Coat = p.Coat;
-				adoptedPet.Description = p.Description;
-				adoptedPet.ContactAddress = p.ContactAddress;
-				adoptedPet.ContactPhone = p.ContactPhone;
-				adoptedPet.ContactEmail = p.ContactEmail;
-				adoptedPet.Photo = p.Photo;
-			}
-		}
+    protected override void OnInitialized()
+    {
+        if (int.TryParse(petid, out int result))
+        {
+            parsedPetId = result;
+        }
+        else
+        {
+            // Handle the case where petid is not a valid integer
+            // You might want to display an error message or redirect the user.
+        }
+    }
+    private void SubmitAdoptionForm()
+    {
+        Pet find = new Pet();
+        List<Pet> pets = DALServicePets.GetPets();
+        foreach (var p in pets)
+        {
+            if (parsedPetId == p.Id)
+            {
+                adoptedPet.Name = p.Name;
+                adoptedPet.Type = p.Type;
+                adoptedPet.Breed = p.Breed;
+                adoptedPet.Color = p.Color;
+                adoptedPet.Species = p.Species;
+                adoptedPet.Age = p.Age;
+                adoptedPet.Gender = p.Gender;
+                adoptedPet.Size = p.Size;
+                adoptedPet.Coat = p.Coat;
+                adoptedPet.Description = p.Description;
+                adoptedPet.ContactAddress = p.ContactAddress;
+                adoptedPet.ContactPhone = p.ContactPhone;
+                adoptedPet.ContactEmail = p.ContactEmail;
+                adoptedPet.Photo = p.Photo;
+            }
+        }
 
 		// Do not set the Id explicitly if it's an identity column
 		adoptedPet.Id = parsedPetId;
