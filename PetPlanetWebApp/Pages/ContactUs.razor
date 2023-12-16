@@ -1,23 +1,29 @@
 ﻿@page "/contact-us"
 
 <style>
+    .add-contactus-body { /* Adjust this value based on your layout needs */
+    }
+
     .p-box {
         height: 110px;
     }
 
+   
 </style>
-<div>
-    <div class="add-contactus-body">
-    <div class="p-box"></div>
-    <ContactUsHeader />
-    <div class="p-box"></div>
-    <Footer></Footer>
-</div>
-<div>
-    <Footer></Footer>
-</div>
-</div>
 
+<div class="add-contactus-body">
+    <HomeHeader></HomeHeader>
+    <div class="p-box"></div>
+    <div class="contactus-content">
+        <ContactUsHeader />
+        <div class="p-box"></div>
+
+        <div class="p-box"></div>
+
+        <div class="p-box"></div>
+    </div>
+    <Footer></Footer>
+</div>
 
 @code {
     // PetFinderAuthService petFinderAuthService = new PetFinderAuthService();
