@@ -1,101 +1,241 @@
 ﻿@page "/contactus-header"
 
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        background: url('/images/bg.jpeg') no-repeat;
-        background-size: cover;
-        font-family: 'Arial Rounded MT', sans-serif;
-    }
+	body {
+		margin: 0;
+		padding: 0;
+		height: 100%;
+		background: url('/images/bg.jpeg') no-repeat;
+		background-size: cover;
+		font-family: 'Arial Rounded MT', sans-serif;
+	}
 
-    .form-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        background: #994715;
-        font-family: 'Arial Rounded MT', sans-serif;
-    }
-     .contact-circle {
-        background-color: #743A36;
-        border-radius: 8rem; /* Reduced border radius */
-        box-shadow: 0 0 0.16rem rgba(0, 0, 0, 0.25); /* Reduced shadow */
-        height: 8.2rem; /* Reduced height */
-        width: 8.2rem; /* Reduced width */
-        position: absolute;
-        top: 1.1rem; /* Positioned at the top */
-        left: 40%; /* Center horizontally */
-        transform: translateX(-50%); /* Center horizontally */
-    }
+	.form-container {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 20px;
+		background: #994715;
+		font-family: 'Arial Rounded MT', sans-serif;
+	}
 
-    .contact-main {
-        color: white;
-        position: absolute;
-        font-size: 1.8em; /* Reduced font size */
-        height: 3rem; /* Reduced height */
-        left: 42rem; /* Adjusted left */
-        letter-spacing: 0.2rem; /* Adjusted letter spacing */
-        line-height: 1.1640625;
-        top: 2.8rem;
-        width: 17.8rem; /* Adjusted width */
-        font-weight: bold;
-    }
+	.contact-circle {
+		background-color: #743A36;
+		border-radius: 8rem; /* Reduced border radius */
+		box-shadow: 0 0 0.16rem rgba(0, 0, 0, 0.25); /* Reduced shadow */
+		height: 8.2rem; /* Reduced height */
+		width: 8.2rem; /* Reduced width */
+		position: absolute;
+		top: 1.1rem; /* Positioned at the top */
+		left: 40%; /* Center horizontally */
+		transform: translateX(-50%); /* Center horizontally */
+	}
 
-    .contact-rectangle {
-        background-color: #B96A59;
-        border-radius: 3.9rem; /* Reduced border radius */
-        box-shadow: 0.312rem 0.104rem 0.208rem rgba(0, 0, 0, 0.25); /* Adjusted shadow */
-        height: 3.8rem; /* Reduced height */
-        width: 30rem; /* Adjusted width */
-        position: absolute;
-        top: 5rem; /* Adjusted top */
-        left: 35rem; /* Adjusted left */
-    }
+	.contact-main {
+		color: white;
+		position: absolute;
+		font-size: 1.8em; /* Reduced font size */
+		height: 3rem; /* Reduced height */
+		left: 43rem; /* Adjusted left */
+		letter-spacing: 0.2rem; /* Adjusted letter spacing */
+		line-height: 1.1640625;
+		top: 2.7rem;
+		width: 17.8rem; /* Adjusted width */
+		font-weight: bold;
+	}
 
-    .contact-img {
-        height: 6rem; /* Reduced height */
-        width: 4rem; /* Reduced width */
-        object-fit: cover;
-        position: absolute;
-        top: 1.3rem; /* Adjusted top */
-        left: 35rem; /* Adjusted left */
-    }
+	.contact-rectangle {
+		background-color: #B96A59;
+		border-radius: 3.9rem; /* Reduced border radius */
+		box-shadow: 0.312rem 0.104rem 0.208rem rgba(0, 0, 0, 0.25); /* Adjusted shadow */
+		height: 4rem; /* Reduced height */
+		width: 30rem; /* Adjusted width */
+		position: absolute;
+		top: 5rem; /* Adjusted top */
+		left: 36rem; /* Adjusted left */
+	}
 
-    .contact-subtext {
-        color: white;
-        font-weight: bold;
-        position: absolute;
-        font-size: 0.7rem; /* Reduced font size */
-        height: 1.2rem; /* Reduced height */
-        left: 40rem; /* Adjusted left */
-        letter-spacing: 0.117rem; /* Adjusted letter spacing */
-        line-height: 1.2361111111;
-        top: 5.2rem; /* Adjusted top */
-        width: 23.2rem; /* Adjusted width */
-    }
+	.contact-img {
+		height: 6rem; /* Reduced height */
+		width: 4rem; /* Reduced width */
+		object-fit: cover;
+		position: absolute;
+		top: 1.3rem; /* Adjusted top */
+		left: 36.4rem; /* Adjusted left */
+	}
 
-    }
+	.contact-subtext {
+		color: white;
+		font-weight: bold;
+		position: absolute;
+		font-size: 0.7rem; /* Reduced font size */
+		height: 1.2rem; /* Reduced height */
+		left: 41rem; /* Adjusted left */
+		letter-spacing: 0.117rem; /* Adjusted letter spacing */
+		line-height: 1.2361111111;
+		top: 5.3rem; /* Adjusted top */
+		width: 23.2rem; /* Adjusted width */
+		text-align: justify;
+	}
+
+	/*CONTACTS*/
+	.contacts-main {
+		background-color: rgba(116, 58, 54, 0.6);
+		height: 13rem;
+		left:35rem;
+		position: absolute;
+		top: 15rem;
+		width: 29rem;
+	}
+
+	.contacts1 {
+		align-items: center;
+		display: flex;
+		margin: 0rem 0.2rem 4.6rem 0rem;
+		width: calc(100% - 0.2rem);
+	}
+
+	.image-air {
+		background-image: url('/images/airuni.png');
+		background-position: -18rem -6.4rem;
+		background-size: 70% 75%;
+		flex-shrink: 0;
+		height: 4rem;
+		margin-right: 2rem;
+		position: relative;
+		width: 4rem;
+		left: 1rem;
+		/* top: 2rem; */
+	}
+
+	.contactus-1 {
+		color: white;
+		flex-shrink: 0;
+		font-size: 1.8rem;
+		font-weight: 600;
+		letter-spacing: 0.26rem;
+		line-height: 1.8625;
+		text-transform: uppercase;
+		white-space: nowrap;
+		bottom: 3rem;
+	}
+
+	.contacts2 {
+		align-items: center;
+		display: flex;
+		margin-left: 0.1rem;
+		width: calc(100% - 0.1rem);
+	}
+
+	.image-2 {
+		background-image: url('/images/asteriq.jpeg');
+		background-position: -18rem -6.4rem;
+		background-size: 70% 75%;
+		flex-shrink: 0;
+		height: 4rem;
+		margin-right: 2rem;
+		position: relative;
+		width: 4rem;
+		left: 1rem;
+		bottom: 0.2rem;
+	}
+
+	.contactus-2 {
+		color: white;
+		flex-shrink: 0;
+		font-size: 1.8rem;
+		font-weight: 600;
+		letter-spacing: 0.26rem;
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
+
+	/*input containers*/
+	.contact-form {
+		width: 80%; /* Adjust form width as needed */
+		text-align: center; /* Center-align form elements */
+	}
+
+	.contacts-input-container {
+		background-color: rgba(116, 58, 54, 0.6);
+		height: 15rem;
+		width: 100%; /* Adjusted width */
+		position: absolute;
+		top: 17rem;
+		color: white;
+		display: flex; /* Added flex display */
+		justify-content: center; /* Horizontally center content */
+		align-items: center; /* Vertically center content */
+	}
+
+	label {
+		display: block;
+		margin-bottom: 0.5rem;
+		font-size: 0.9rem;
+	}
+
+	input[type="tel"],
+	input[type="email"],
+	button {
+		padding: 0.5rem;
+		border-radius: 0.3rem;
+		border: none;
+		width: 80%;
+		margin-bottom: 1rem;
+		font-size: 0.9rem;
+		box-sizing: border-box; /* Include padding in width calculation */
+		display: block; /* Ensures each input field and button is displayed on a new line */
+		margin: 0 auto;
+	}
+
+	input[type="tel"],
+	input[type="email"] {
+		background-color: #fff; /* Input field background color */
+	}
+
+	/* Styles for the 'Send' button */
+	button {
+		background-color: #B96A59;
+		color: white;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+		width: 50%; /* Adjusted button width */
+		margin: 0 auto; /* Center-align button */
+	}
+
+	button:hover {
+		background-color: #994715; /* Adjusted color on hover */
+	}
+
 </style>
 
 
 <div class="group-7-1C9" id="1:79">
-	<div class="contact-circle" id="1:80"></div>
-	<p class="contact-main" id="1:81">Contacts</p>
-	<div class="contact-rectangle" id="1:82"></div>
+    <div class="contact-circle" id="1:80"></div>
+    <p class="contact-main" id="1:81">Contacts</p>
+    <div class="contact-rectangle" id="1:82"></div>
     <img class="contact-img" src="images/aboutus-main.png" id="1:83" />
-	<p class="contact-subtext" id="1:84">Thank you for the company it was a pleasure to meet you! here you can leave your phone number to contact our operator and also help our project with a donation</p>
+    <p class="contact-subtext" id="1:84">Thank you for the company it was a pleasure to meet you! Here you can leave your phone number to contact our operator and also help our project with a donation</p>
 </div>
 
-<div class="group-10-Uaq" id="1:209">
-    <div class="auto-group-hkry-cS9" id="PekAG854JTzd2HX1gDHkry">
-        <div class="image-12-Yah" id="1:212"></div>
-        <p class="item-5375-4141-2092-5051-Sg5" id="1:210">5375 4141 2092 5051</p>
+<div class="contacts-main" id="1:209">
+    <div class="contacts1" id="PekAG854JTzd2HX1gDHkry">
+        <div class="image-air" id="1:212"></div>
+        <p class="contactus-1" id="1:210">051-9262557-9</p>
     </div>
-    <div class="auto-group-lwbf-YUD" id="PekALTHB4Kz7skfygWLWbF">
-        <div class="image-13-5yw" id="1:213"></div>
-        <p class="item-4149-4993-4992-1757-avh" id="1:211">4149 4993 4992 1757</p>
+    <div class="contacts2" id="PekALTHB4Kz7skfygWLWbF">
+        <div class="image-2" id="1:213"></div>
+        <p class="contactus-2" id="1:211">051-1234567-8</p>
     </div>
+
+	<div class="contacts-input-container">
+		<div class="contact-form">
+			<label for="phoneNumber">Enter number:</label>
+			<input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter number" style="margin-bottom: 1rem; display: block;">
+			<label for="email">Enter email to receive notifications:</label>
+			<input type="email" id="email" name="email" placeholder="Enter email" style="margin-bottom: 1rem; display: block;">
+			<button style="padding: 0.5rem 1rem;">Send</button>
+		</div>
+	</div>
 </div>
 
 @code {
