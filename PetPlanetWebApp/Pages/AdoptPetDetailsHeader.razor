@@ -20,14 +20,15 @@
         <p>Contact Phone: @PetDetails.ContactPhone</p>
         <p>Contact Address: @PetDetails.ContactAddress</p>
     </div>
-    <button class="adopt-button">Adopt this pet</button>
+    <button class="adopt-button" @onclick="Adopt">Adopt this pet</button>
 </div>
 
 @code {
-        [Inject]
-        public NavigationManager NavigationManager { get; set; }
 
-        private Pet PetDetails;
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    private Pet PetDetails;
 
     protected override void OnInitialized()
     {
@@ -37,23 +38,66 @@
             .Select(part => part.Split('='))
             .ToDictionary(split => split[0], split => split.Length > 1 ? Uri.UnescapeDataString(split[1]) : "");
 
-        // Extract pet details from query parameters
-        PetDetails = new Pet
-            {
-                Id = int.Parse(queryParams["id"]),
-                Name = queryParams["name"],
-                Type = queryParams["type"],
-                Species = queryParams["species"],
-                Breed = queryParams.ContainsKey("breed") ? queryParams["breed"] : "",
-                Color = queryParams.ContainsKey("color") ? queryParams["color"] : "",
-                Age = queryParams.ContainsKey("age") ? int.Parse(queryParams["age"]) : 0,
-                Gender = queryParams.ContainsKey("gender") ? queryParams["gender"] : "",
-                Size = queryParams.ContainsKey("size") ? queryParams["size"] : "",
-                Coat = queryParams.ContainsKey("coat") ? queryParams["coat"] : "",
-                Description = queryParams.ContainsKey("description") ? queryParams["description"] : "",
-                ContactEmail = queryParams.ContainsKey("contactEmail") ? queryParams["contactEmail"] : "",
-                ContactPhone = queryParams.ContainsKey("contactPhone") ? queryParams["contactPhone"] : "",
-                ContactAddress = queryParams.ContainsKey("contactAddress") ? queryParams["contactAddress"] : ""
-            };
+        // Validate and parse pet id
+        if (queryParams.ContainsKey("id") && int.TryParse(queryParams["id"], out int petId))
+        {
+            PetDetails = new Pet
+                {
+                    Id = petId,
+                    Name = queryParams.ContainsKey("name") ? queryParams["name"] : "",
+                    Type = queryParams.ContainsKey("type") ? queryParams["type"] : "",
+                    Species = queryParams.ContainsKey("species") ? queryParams["species"] : "",
+                    Breed = queryParams.ContainsKey("breed") ? queryParams["breed"] : "",
+                    Color = queryParams.ContainsKey("color") ? queryParams["color"] : "",
+                    Age = queryParams.ContainsKey("age") ? int.Parse(queryParams["age"]) : 0,
+                    Gender = queryParams.ContainsKey("gender") ? queryParams["gender"] : "",
+                    Size = queryParams.ContainsKey("size") ? queryParams["size"] : "",
+                    Coat = queryParams.ContainsKey("coat") ? queryParams["coat"] : "",
+                    Description = queryParams.ContainsKey("description") ? queryParams["description"] : "",
+                    ContactEmail = queryParams.ContainsKey("contactEmail") ? queryParams["contactEmail"] : "",
+                    ContactPhone = queryParams.ContainsKey("contactPhone") ? queryParams["contactPhone"] : "",
+                    ContactAddress = queryParams.ContainsKey("contactAddress") ? queryParams["contactAddress"] : ""
+                };
+        }
+        else
+        {
+            // Handle the case where "id" is not a valid integer
+            // You might want to redirect to an error page or handle it differently.
+        }
+    }
+
+
+    // protected override void OnInitialized()
+    // {
+    //     var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+    //     var query = uri.Query.TrimStart('?');
+    //     var queryParams = query.Split('&')
+    //         .Select(part => part.Split('='))
+    //         .ToDictionary(split => split[0], split => split.Length > 1 ? Uri.UnescapeDataString(split[1]) : "");
+
+    //     // Extract pet details from query parameters
+    //     PetDetails = new Pet
+    //         {
+
+    //             Id = int.Parse(queryParams["id"]),
+    //             Name = queryParams["name"],
+    //             Type = queryParams["type"],
+    //             Species = queryParams["species"],
+    //             Breed = queryParams.ContainsKey("breed") ? queryParams["breed"] : "",
+    //             Color = queryParams.ContainsKey("color") ? queryParams["color"] : "",
+    //             Age = queryParams.ContainsKey("age") ? int.Parse(queryParams["age"]) : 0,
+    //             Gender = queryParams.ContainsKey("gender") ? queryParams["gender"] : "",
+    //             Size = queryParams.ContainsKey("size") ? queryParams["size"] : "",
+    //             Coat = queryParams.ContainsKey("coat") ? queryParams["coat"] : "",
+    //             Description = queryParams.ContainsKey("description") ? queryParams["description"] : "",
+    //             ContactEmail = queryParams.ContainsKey("contactEmail") ? queryParams["contactEmail"] : "",
+    //             ContactPhone = queryParams.ContainsKey("contactPhone") ? queryParams["contactPhone"] : "",
+    //             ContactAddress = queryParams.ContainsKey("contactAddress") ? queryParams["contactAddress"] : ""
+    //         };
+        
+    // }
+    public void Adopt()
+    {
+        NavigationManager.NavigateTo($"/adoption-form/{PetDetails.Id}");
     }
 }
