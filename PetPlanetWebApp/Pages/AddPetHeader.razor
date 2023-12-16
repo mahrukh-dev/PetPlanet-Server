@@ -64,7 +64,7 @@
         <input type="text" id="contactAddress" @bind="pet.ContactAddress" name="contactAddress" required><br><br>
 
         <label for="photo">Add a Photo:</label>
-        <input type="file" id="photoInput" name="photo" accept="image/*"  onchange="OnFileChange()">
+        <input type="file" id="photoInput" name="photo" accept="image/*"  @onchange="OnFileChange">
         <br><br>
 
         <div class="row mb-4">
@@ -118,6 +118,10 @@
             Photo = new byte[0]
         };
 
+    private void OnFileChange()
+    {
+        
+    }
 
     private void UploadPet()
     {

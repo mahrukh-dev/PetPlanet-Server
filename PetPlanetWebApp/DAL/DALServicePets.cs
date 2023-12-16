@@ -28,8 +28,20 @@ namespace PetPlanetWebApp.DAL
                     cmd.Parameters.AddWithValue("@ContactEmail", pet.ContactEmail);
                     cmd.Parameters.AddWithValue("@ContactPhone", pet.ContactPhone);
                     cmd.Parameters.AddWithValue("@ContactAddress", pet.ContactAddress);
-                    cmd.Parameters.AddWithValue("@Photo", pet.Photo);
+
                     cmd.ExecuteNonQuery();
+                    //try
+                    //{
+                    //    FileStream FS = new FileStream((nint)FileMode.Open, FileAccess.Read);
+                    //    byte[] img = new byte[FS.Length];
+                    //    FS.Read(img, 0, Convert.ToInt32(FS.Length));
+                    //    cmd.Parameters.AddWithValue("@Photo", pet.Photo).Value = img;
+                    //    cmd.ExecuteNonQuery();
+                    //}
+                    //finally
+                    //{
+                    //    con.Close();
+                    //}
                 }
             }
         }

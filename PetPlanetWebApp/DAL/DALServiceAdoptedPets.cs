@@ -81,6 +81,8 @@ namespace PetPlanetWebApp.DAL
 
         public static List<AdoptedPet> GetAdoptedPets()
         {
+            
+
             List<AdoptedPet> adoptedPets = new List<AdoptedPet>();
 
             using (SqlConnection con = DBHelpPetService.GetConnection())

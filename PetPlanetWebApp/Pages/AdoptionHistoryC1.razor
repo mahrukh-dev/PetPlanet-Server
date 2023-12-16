@@ -1,0 +1,62 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using System.Collections.Generic
+@using System.Text
+
+<link href="css/AdoptPetHeader.css" rel="stylesheet" />
+
+<div class="adoptpet-body">
+    <div class="filter-section">
+        <label for="speciesDropdown">FILTER BY SPECIES:</label>
+        <select id="speciesDropdown" @bind="selectedSpecies">
+            <option value="">All</option>
+            <option value="Cat">Cats</option>
+            <option value="Dog">Dogs</option>
+            <option value="Fish">Fishs</option>
+
+            <option value="Other">Other Pets</option>
+        </select>
+    </div>
+
+    <div class="wrapper">
+        <div class="card-container">
+            @foreach (var pet in FilteredPets)
+            {
+                <a>
+                    <div class="card">
+                        <img src="images/trial-image.jpeg" />
+                        <div class="info">
+                            <p>Name: @pet.Name</p>
+                            <p>Type: @pet.Type</p>
+                            <p>Species: @pet.Species</p>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<AdoptedPet> Pets;
+    private string selectedSpecies = "";
+
+    protected override void OnInitialized()
+    {
+        Pets = DALServiceAdoptedPets.GetAdoptedPets();
+    }
+
+    private List<AdoptedPet> FilteredPets
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(selectedSpecies))
+            {
+                return Pets;
+            }
+            else
+            {
+                return Pets.Where(p => p.Species == selectedSpecies).ToList();
+            }
+        }
+    }
+}
