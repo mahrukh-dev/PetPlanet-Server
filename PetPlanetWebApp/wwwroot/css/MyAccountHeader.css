@@ -1,0 +1,74 @@
+﻿body {
+    background-image: url('/images/bg.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.ui-w-80 {
+    width: 80px !important;
+    height: auto;
+}
+
+.btn-default {
+    border-color: rgba(24, 28, 33, 0.1);
+    background: rgba(0, 0, 0, 0);
+    color: #4E5155;
+}
+
+label.btn {
+    margin-bottom: 0;
+}
+
+.btn-outline-primary {
+    border-color: #26B4FF;
+    background: transparent;
+    color: #26B4FF;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.text-light {
+    color: #babbbc !important;
+}
+
+.card {
+    background-clip: padding-box;
+    box-shadow: 0 1px 4px rgba(24, 28, 33, 0.012);
+}
+
+.row-bordered {
+    overflow: hidden;
+}
+
+.account-settings-fileinput {
+    position: absolute;
+    visibility: hidden;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+/* Targeting the Change Password form group elements */
+#account-change-password .form-group {
+    margin-bottom: 1rem; /* Apply margin similar to other form groups */
+}
+
+#account-change-password .form-label {
+    color: #babbbc; /* Set label color similar to other labels */
+}
+
+#account-change-password .form-control {
+    border-color: rgba(24, 28, 33, 0.1); /* Apply border color similar to other form controls */
+    background: rgba(0, 0, 0, 0); /* Set background similar to other form controls */
+    color: #4E5155; /* Set text color similar to other form controls */
+    margin-bottom: 0.5rem; /* Adjust margin bottom similar to other form controls */
+}
+
+    #account-change-password .form-control:focus {
+        box-shadow: 0 0 0 0.2rem rgba(38, 180, 255, 0.25); /* Apply focus style similar to other form controls */
+    }
