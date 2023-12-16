@@ -1,76 +1,204 @@
-﻿@page "/myaccount-header"
+﻿
+<style>
 
-<!DOCTYPE html>
-<html lang="en">
+    .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/MyAccountHeader.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+    /* Account Details Styles */
+    h3, hr {
+        color: #4d2d00; /* Brown color for headings */
+        font-size: 1.5rem;
+    }
 
-<body>
-	<div class="container light-style flex-grow-1 container-p-y">
-		<h4 class="font-weight-bold py-3 mb-4">
-			Account settings
-		</h4>
-		<div class="card overflow-hidden">
-			<div class="row no-gutters row-bordered row-border-light">
-				<div class="col-md-3 pt-0">
-					<div class="list-group list-group-flush account-settings-links">
-						<a class="list-group-item list-group-item-action active" data-toggle="list"
-						   href="#account-general">General</a>
-					</div>
-				</div>
-				<div class="col-md-9">
-					<div class="tab-content">
-						<div class="tab-pane fade active show" id="account-general">
-						</div>
-						<hr class="border-light m-0">
-						<div class="card-body">
-							<div class="form-group">
-								<label class="form-label">Username</label>
-								<input type="text" class="form-control mb-1">
-							</div>
-							<div class="form-group">
-								<label class="form-label">Name</label>
-								<input type="text" class="form-control">
-							</div>
-							<div class="form-group">
-								<label class="form-label">E-mail</label>
-								<input type="text" class="form-control mb-1">
-							</div>
-							<div class="tab-pane fade" id="account-change-password">
-								<div class="card-body pb-2">
-									<div class="form-group">
-										<label class="form-label">Current password</label>
-										<input type="password" class="form-control">
-									</div>
-									<div class="form-group">
-										<label class="form-label">New password</label>
-										<input type="password" class="form-control">
-									</div>
-									<div class="form-group">
-										<label class="form-label">Repeat new password</label>
-										<input type="password" class="form-control">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="text-right mt-3">
-				<button type="button" class="btn btn-primary">Save changes</button>&nbsp;
-				<button type="button" class="btn btn-default">Cancel</button>
-			</div>
-		</div>
-	</div>
-</body>
+    div {
+        margin-bottom: 15px;
+    }
 
-</html>
+    p {
+        margin: 5px 0;
+    }
+
+    button {
+        background-color: #8b4513;
+        color: #fff;
+        padding: 10px 15px;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+    }
+
+        button:hover {
+            background-color: #654321; /* Darker brown on hover */
+        }
+
+    /* Change Password Styles */
+    hr {
+        border: 1px solid #8b4513; /* Brown color for the border */
+        margin: 20px 0;
+    }
+
+    
+    h4 {
+        color: #4d2d00; /* Brown color for subheadings */
+    }
+
+    input{
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 1px solid #8b4513;
+        border-radius: 4px;
+    }
+
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 1px solid #8b4513;
+        border-radius: 4px;
+    }
+
+    /* Modal Styles */
+    .modal {
+        background-color: #d2b48c; /* Light brown for the modal background */
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    /* Form Label Styles */
+    label {
+        color: #4d2d00;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+</style>
+
+<!-- ... (rest of your Razor component code) -->
+
+<div class="form-container">
+<h3>Account Details</h3>
+<div>
+    <p><strong>Username:</strong> @user.UserName</p>
+    <p><strong>Email:</strong> @user.UserEmail</p>
+    <p><strong>Name:</strong> @user.Name</p>
+</div>
+
+<button @onclick="ShowChangeDetailsModal">Change Details</button><br /><br />
+
+@if (showChangeDetailsModal)
+{
+    <div >
+        <div>
+            <h4>Change User Details</h4>
+            <div>
+                <label for="newUsername">New Username:</label>
+                <input id="newUsername" @bind="user.UserName" />
+            </div>
+            <div>
+                <label for="newEmail">New Email:</label>
+                <input id="newEmail" @bind="user.UserEmail" />
+            </div>
+            <div>
+                <label for="newName">New Name:</label>
+                <input id="newName" @bind="user.Name" />
+            </div>
+            <button @onclick="ChangeUserDetails">Save Changes</button>
+            <button @onclick="CloseChangeDetailsModal">Close</button>
+        </div>
+    </div>
+}
+<br />
+<hr />
+
+<div>
+    <h4>Change Password</h4>
+
+    @if (showChangePasswordFields)
+    {
+        <div>
+            <label for="oldPassword">Old Password:</label>
+            <input type="password" id="oldPassword" @bind="oldPassword" />
+        </div>
+        <div>
+            <label for="newPassword">New Password:</label>
+            <input type="password" id="newPassword" @bind="newPassword" />
+        </div>
+        <div>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" @bind="confirmPassword" />
+        </div>
+        <button @onclick="ChangePassword">Save Password</button>
+    }
+    else
+    {
+        <button @onclick="ShowChangePasswordFields">Change Password</button>
+    }
+</div>
+</div>
 
 @code {
 
+    [Parameter]
+    public int userId { get; set; }
+
+    User user { get; set; } = new User();
+
+    protected override void OnInitialized()
+    {
+            user.UserID = userId;
+            user = DALServiceUsers.ReadUser(userId);
+        
+    }
+
+
+
+
+    private bool showChangeDetailsModal = false;
+
+
+    private bool showChangePasswordFields = false;
+    private string oldPassword;
+    private string newPassword;
+    private string confirmPassword;
+
+    private void ShowChangeDetailsModal()
+    {
+        showChangeDetailsModal = true;
+    }
+
+    private void CloseChangeDetailsModal()
+    {
+        showChangeDetailsModal = false;
+    }
+
+    private void ChangeUserDetails()
+    {
+        // Implement logic to save changes to user details
+        // For example, update the database with newUsername, newEmail, newName
+        showChangeDetailsModal = false;
+        DALServiceUsers.UpdateUser(user);
+    }
+
+    private void ShowChangePasswordFields()
+    {
+        showChangePasswordFields = true;
+    }
+
+    private void ChangePassword()
+    {
+        // Implement logic to change the user's password
+        // For example, validate oldPassword, update the database with newPassword
+        showChangePasswordFields = false;
+        if((oldPassword == user.UserPassword) && (newPassword == confirmPassword))
+        {
+            user.UserPassword = confirmPassword;
+
+            DALServiceUsers.UpdateUser(user);
+        }
+    }
 }
