@@ -1,22 +1,24 @@
-﻿@page "/adoptpet-header"
-@using Microsoft.AspNetCore.Components.Web
+﻿@using Microsoft.AspNetCore.Components.Web
 @using System.Collections.Generic
 @using System.Text
 
 <link href="css/AdoptPetHeader.css" rel="stylesheet" />
 
 <div class="adoptpet-body">
-    <div class="filter-section">
-        <label for="speciesDropdown">FILTER BY SPECIES:</label>
-        <select id="speciesDropdown" @bind="selectedSpecies">
-            <option value="">All</option>
-            <option value="Cat">Cats</option>
-            <option value="Dog">Dogs</option>
-            <option value="Fish">Fishs</option>
+    @if (type == null)
+    {
+        <div class="filter-section">
+            <label for="speciesDropdown">FILTER BY SPECIES:</label>
+            <select id="speciesDropdown" @bind="selectedSpecies">
+                <option value="">All</option>
+                <option value="Cat">Cats</option>
+                <option value="Dog">Dogs</option>
+                <option value="Fish">Fishs</option>
 
-            <option value="Other">Other Pets</option>
-        </select>
-    </div>
+                <option value="Other">Other Pets</option>
+            </select>
+        </div>
+    }
 
     <div class="wrapper">
         <div class="card-container">
@@ -38,20 +40,16 @@
 </div>
 
 @code {
+    [Parameter]
+    public string type { get; set; } = null;
+
     private List<Pet> Pets;
     private string selectedSpecies = "";
 
     protected override void OnInitialized()
     {
         Pets = DALServicePets.GetPets();
-        // Pets = new List<Pet>
-        // {
-        //     new Pet {Id = 1, Name = "Fluffy", Type = "Persian", Species = "Cat", Breed = "Domestic Longhair", Color = "White",
-        //             Age = 3, Gender = "Male", Size = "Medium", Coat = "Long", Description = "Fluffy is a friendly and playful Persian cat.",
-        //             ContactEmail = "fluffy@example.com", ContactPhone = "123-456-7890", ContactAddress = "123 Main St, Anytown, USA"},
-        //     new Pet {Id = 2, Name = "Candy", Type = "Persian", Species = "Cat"},
-        //     new Pet {Id = 3, Name = "Buddy", Type = "Golden Retriever", Species = "Dog"},
-        // };
+        selectedSpecies = type;
     }
 
     private List<Pet> FilteredPets

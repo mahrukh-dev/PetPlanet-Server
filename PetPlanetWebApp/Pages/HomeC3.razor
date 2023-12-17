@@ -2,46 +2,35 @@
 @using Microsoft.AspNetCore.Components.Web;
 <link href="css/HomeC3.css" rel="stylesheet" />
 <div class="c3-body">
-	<div class="c3-customdiv1"></div>
+
+	<div class="c3-customdiv"></div>
 <div class="wrapper">
-	<div class="card">
-		<i class="far fa-heart favorite-icon"></i>
-		<img src="images/trial-image.jpeg" />
-		<div class="info">
-			<h1>Heading</h1>
-			<p>Persian Cat</p>
-			<a href="#" class="btn">Read More</a>
-		</div>
-	</div>
 
+	@foreach (var pet in random.Take(4)){
+		<a href="@($"adopt-pet-details?id={pet.Id}&name={pet.Name}&type={pet.Type}&species={pet.Species}&breed={pet.Breed}&color={pet.Color}&age={pet.Age}&gender={pet.Gender}&size={pet.Size}&coat={pet.Coat}&description={pet.Description}&contactEmail={pet.ContactEmail}&contactPhone={pet.ContactPhone}&contactAddress={pet.ContactAddress}")">
 	<div class="card">
-		<i class="far fa-heart favorite-icon"></i>
+@* 		<i class="far fa-heart favorite-icon"></i> *@
 		<img src="images/trial-image.jpeg" />
 		<div class="info">
-			<h1>Heading</h1>
-			<p>Persian Cat</p>
-			<a href="#" class="btn">Read More</a>
+			<h1>@pet.Name</h1>
+			<p>@pet.Breed</p>
+			<a  class="btn">Read More</a>
 		</div>
 	</div>
+	</a>
+	}
 
-	<div class="card">
-		<i class="far fa-heart favorite-icon"></i>
-		<img src="images/trial-image.jpeg" />
-		<div class="info">
-			<h1>Heading</h1>
-			<p>Persian Cat</p>
-			<a href="#" class="btn">Read More</a>
-		</div>
-	</div>
-		<div class="card">
-			<i class="far fa-heart favorite-icon"></i>
-			<img src="images/trial-image.jpeg" />
-			<div class="info">
-				<h1>Heading</h1>
-				<p>Persian Cat</p>
-				<a href="#" class="btn">Read More</a>
-			</div>
-		</div>
-	</div>
+</div>
+
 	<div class="c3-customdiv"></div>
 </div>
+
+@code {
+	private List<Pet> random;
+
+	protected override void OnInitialized()
+	{
+		random = DALServicePets.GetPets();
+		
+	}
+}

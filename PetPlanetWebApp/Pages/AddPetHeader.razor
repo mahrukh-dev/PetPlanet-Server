@@ -4,6 +4,9 @@
 @using System.IO;
 @using System.Linq;
 
+@inject NavigationManager NavigationManager
+
+
 <link href="css/AddPetHeader.css" rel="stylesheet" />
 
 <div class="form-container">
@@ -17,7 +20,8 @@
 
         <label for="species">Species:</label>
         <select id="species" @bind="pet.Species" name="species">
-            <option value="Cat" selected>Cat</option>
+            <option selected>Select Species</option>
+            <option value="Cat" >Cat</option>
             <option value="Dog">Dog</option>
             <option value="Fish">Fish</option>
             <option value="Other">Other Pets</option>
@@ -34,14 +38,16 @@
 
         <label for="gender">Gender:</label>
         <select id="gender" name="gender" @bind="pet.Gender">
-            <option value="male" selected>Male</option>
+            <option selected>Select Gender</option>
+            <option value="male" >Male</option>
             <option value="female">Female</option>
             <option value="unknown">Unknown</option>
         </select><br><br>
 
         <label for="size">Size:</label>
         <select id="size" name="size" @bind="pet.Size">
-            <option value="small" selected>Small</option>
+            <option selected>Select Size</option>
+            <option value="small" >Small</option>
             <option value="medium">Medium</option>
             <option value="large">Large</option>
             <option value="extra-large">Extra Large</option>
@@ -126,5 +132,7 @@
     {
 
         DALServicePets.InsertPet(pet);
+
+        NavigationManager.NavigateTo("/home/");
     }
 }

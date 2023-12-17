@@ -1,0 +1,30 @@
+﻿@page "/adoption-form/{petid}/{userid}"
+@page "/adoption-form/{petid}"
+@page "/adoption-form/"
+
+
+
+
+<style>
+    .p-box {
+        height: 110px;
+    }
+
+</style>
+<HomeHeader ></HomeHeader>
+<div class="add-pet-body">
+    <div class="p-box"></div>
+    <AdoptionFormC1 petid=@petid userid=@userid />
+    <div class="p-box"></div>
+</div>
+
+
+@code {
+    [Parameter]
+    public string petid { get; set; }
+
+
+    [Parameter]
+    public string userid { get; set; }
+
+}

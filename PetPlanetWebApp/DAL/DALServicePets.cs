@@ -28,7 +28,7 @@ namespace PetPlanetWebApp.DAL
                     cmd.Parameters.AddWithValue("@ContactEmail", pet.ContactEmail);
                     cmd.Parameters.AddWithValue("@ContactPhone", pet.ContactPhone);
                     cmd.Parameters.AddWithValue("@ContactAddress", pet.ContactAddress);
-
+                    cmd.Parameters.AddWithValue("@Photo", pet.Photo);
                     cmd.ExecuteNonQuery();
                     //try
                     //{

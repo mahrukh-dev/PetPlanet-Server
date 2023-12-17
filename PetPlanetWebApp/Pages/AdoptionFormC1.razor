@@ -1,6 +1,7 @@
-﻿@page "/adoption-form/{petid}"
-@using PetPlanetWebApp.Models
+﻿@using PetPlanetWebApp.Models
 @using Microsoft.AspNetCore.Components.Forms
+
+@inject NavigationManager NavigationManager
 
 <style>
 	body {
@@ -91,6 +92,9 @@
 	[Parameter]
 	public string petid { get; set; }
 
+	[Parameter]
+	public string userid { get; set; }
+
 	private int parsedPetId;
 
 	AdoptionRequest adoptionRequest { get; set; } = new AdoptionRequest();
@@ -141,6 +145,8 @@
 		DALServiceAdoptionRequests.InsertAdoptionRequest(adoptionRequest);
 
 		DALServicePets.DeletePet(parsedPetId);
+
+		NavigationManager.NavigateTo($"/home/");
 	}
 
 }

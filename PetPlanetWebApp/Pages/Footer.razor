@@ -131,8 +131,8 @@
             <h3>NewsLetter</h3>
             <form>
                 <i class="far fa-envelope"></i>
-                <input type="email" placeholder="Enter your email id" required>
-                <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                <input type="email" @bind="email" placeholder="Enter your email id" required>
+                    <button  @onclick="OnSend"><i class="fas fa-arrow-right"></i></button>
             </form>
             <div class="social-icons">
                 <i class="fa-brands fa-facebook-f"></i>
@@ -149,5 +149,11 @@
 </footer>
 </div>
 @code {
+    public string email { get; set; } = null;
 
+    public void OnSend()
+    {
+        DALContactUS.InsertContactUs(email);
+        email = "";
+    }
 }

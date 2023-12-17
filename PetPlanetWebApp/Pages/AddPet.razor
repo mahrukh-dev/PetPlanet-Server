@@ -1,4 +1,6 @@
 ﻿@page "/add-pet"
+@page "/add-pet/{userid}"
+
 
 <style>
     .p-box {
@@ -6,7 +8,7 @@
     }
 </style>
 
-<HomeHeader></HomeHeader>
+<HomeHeader user=@user.UserName></HomeHeader>
 <div class="add-pet-body">
     <div class="p-box"></div>
     <AddPetHeader />
@@ -14,5 +16,30 @@
 </div>
 
 @code {
+    [Parameter]
+    public string userid { get; set; } 
+    public int userid_int{ get; set; }
+    User user { get; set; } = new User()
+    {
+        UserName = "Create Account"
+    };
 
+    protected override void OnInitialized()
+    {
+        if (userid == "")
+        {
+            userid = "Create Account";
+            user.UserName =  "Create Account";
+        }
+        else
+        {
+            if (int.TryParse(userid, out int result))
+            {
+                userid_int = result;
+                user = DALServiceUsers.ReadUser(userid_int);
+            }
+        }
+
+    }
+    
 }
